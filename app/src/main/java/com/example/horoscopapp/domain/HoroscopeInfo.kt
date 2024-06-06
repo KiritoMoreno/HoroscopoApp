@@ -1,6 +1,6 @@
 package com.example.horoscopapp.domain
 
-data class HoroscopeInfo (){
+sealed class HoroscopeInfo (val name:String, val img:Int){
 
-
+    
 }
