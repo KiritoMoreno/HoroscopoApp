@@ -17,16 +17,16 @@ class HoroscopeViewHolder (view: View): RecyclerView.ViewHolder(view){
 
         // le pasamos la funcion lambda  y dentro el item seleccionado
         binding.itemHoroscopeParent.setOnClickListener {
-            startRotationAnimation(binding.ivHoroscope)
-            // onItemSelected(horoscopeInfo)
+            startRotationAnimation(binding.ivHoroscope, newLambda = {onItemSelected(horoscopeInfo)})
         }
     }
 
-    private fun startRotationAnimation(view: View){
+    private fun startRotationAnimation(view: View, newLambda:() -> Unit){
         view.animate().apply{
             duration = 500
             interpolator = LinearInterpolator()  // Va a tener la misma velocidad desde el inicio hasta el final con linearInterpolator
             rotationBy(360f)  // Rotar sobre su propio punto
+            withEndAction { newLambda() }
             start()
         }
     }
